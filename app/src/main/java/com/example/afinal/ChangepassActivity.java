@@ -1,5 +1,6 @@
 package com.example.afinal;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.L;
 import com.airbnb.lottie.LottieAnimationView;
@@ -24,6 +26,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +42,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 public class ChangepassActivity extends AppCompatActivity {
-    LinearLayout pattern,total;
+    LinearLayout pattern, total;
     LottieAnimationView animation;
     EditText currentpass, newpass, confirmpass;
 
@@ -51,9 +59,9 @@ public class ChangepassActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changepass);
-        animation=(LottieAnimationView) findViewById(R.id.animationView);
+        animation = (LottieAnimationView) findViewById(R.id.animationView);
         pattern = (LinearLayout) findViewById(R.id.pattern);
-        total=(LinearLayout) findViewById(R.id.total);
+        total = (LinearLayout) findViewById(R.id.total);
         atoz = (TextView) findViewById(R.id.atoz);
         AtoZ = (TextView) findViewById(R.id.AtoZ);
         num = (TextView) findViewById(R.id.num);
@@ -96,38 +104,16 @@ public class ChangepassActivity extends AppCompatActivity {
                 Log.i("result", response);
                 try {
                     JSONArray x = new JSONArray(response);
-
+                    String email = "";
                     if (x.length() > 0) {
                         for (int i = 0; i < x.length(); i++) {
                             JSONObject user = x.getJSONObject(i);
                             int id1 = user.getInt("id");
+                            email = user.getString("email");
                             oldpass = user.getString("password");
                         }
-                        if (oldpass.equals(currentpass.getText().toString())) {
-                            Log.i("iniffffffoldddd", oldpass);
+                        updatee(email);
 
-
-                            if (!newpass.getText().toString().equals(confirmpass.getText().toString())) {
-
-                                confirmpass.setError("password isnot equal confirm password");
-
-                            } else {
-                                if (validatepass(newpass.getText().toString())) {
-
-                                    updatee();
-                                } else {
-
-
-                                    Log.i("faseeee", "falseeeeeeee");
-                                }
-
-
-                            }
-
-                        } else {
-                            currentpass.setError("Incorrect");
-
-                        }
 
                     }
                 } catch (JSONException e) {
@@ -147,57 +133,42 @@ public class ChangepassActivity extends AppCompatActivity {
 
     }
 
-    public void updatee() {
+    public void updatee(String email) {
 
-        String url = "http://192.168.154.207:8000/api/user/updatepass/";
-        SharedPreferences sh = this.getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-        String id = sh.getString("id", "");
-        Log.i("iddd", id);
-        RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest request = new StringRequest(Request.Method.POST, url + id, new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                try {
-                    JSONObject respObj = new JSONObject(response);
-                    Log.i("response", response);
-                    total.setVisibility(View.GONE);
-                    animation.setVisibility(View.VISIBLE);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
+// Get auth credentials from the user for re-authentication. The example below shows
+// email and password credentials but there are multiple possible providers,
+// such as GoogleAuthProvider or FacebookAuthProvider.
+        AuthCredential credential = EmailAuthProvider
+                .getCredential(email, oldpass.toString());
+Log.i("user",user.toString());
+// Prompt the user to re-provide their sign-in credentials
+        user.reauthenticate(credential)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            user.updatePassword(newpass.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getApplicationContext(), "Password updated", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                                        startActivity(i);
 
-                            Intent i = new Intent(getApplicationContext(), HomeActivity.class);
-                            startActivity(i);
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "Password not updated", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }
+                            });
+                        } else {
+                            Toast.makeText(getApplicationContext(), "auth error", Toast.LENGTH_SHORT).show();
 
                         }
-                    }, 5000);
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new com.android.volley.Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("eroororr", String.valueOf(error));
-            }
-        }) {
-            @Override
-            protected Map getParams() {
-
-                Map<String, Object> params = new HashMap<>();
-                params.put("password", newpass.getText().toString());
-                Log.i("param", String.valueOf(params));
-
-                return params;
-            }
-        };
-
-        queue.add(request);
-
+                    }
+                });
 
     }
 

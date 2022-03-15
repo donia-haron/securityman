@@ -44,6 +44,7 @@
             android:layout_width="200dp"
             android:layout_height="65dp"
             android:paddingTop="15dp"
+            android:onClick="forget"
             android:text="Send Email"
             android:textSize="20sp"
             android:textColor="@color/white"

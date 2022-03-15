@@ -5,7 +5,8 @@
             <objectAnimator
                 android:duration="@android:integer/config_mediumAnimTime"
                 android:propertyName="translationZ"
-                android:valueTo="5dp" />
+                android:valueTo="5dp"
+                />
         </set>
     </item>
     <item android:state_selected="true">

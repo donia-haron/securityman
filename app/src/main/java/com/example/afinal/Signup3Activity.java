@@ -1,5 +1,6 @@
 package com.example.afinal;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +16,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.ActionCodeSettings;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,6 +48,7 @@ public class Signup3Activity extends AppCompatActivity {
     private TextView category;
     private TextView type;
     private TextView color;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +62,6 @@ public class Signup3Activity extends AppCompatActivity {
         nid = (TextView) findViewById(R.id.nid);
         gender = (TextView) findViewById(R.id.gender);
         address = (TextView) findViewById(R.id.address);
-
-
         carnum = (TextView) findViewById(R.id.carnum);
         category = (TextView) findViewById(R.id.category);
         type = (TextView) findViewById(R.id.type);
@@ -62,7 +69,7 @@ public class Signup3Activity extends AppCompatActivity {
         user = (user) getIntent().getSerializableExtra("user");
         car = (user) getIntent().getSerializableExtra("car");
         Log.i("user", user.username);
-        Log.i("car", car.carnumber);
+     //   Log.i("car", car.carnumber);
         username.setText(user.username);
         email.setText(user.email);
         phone.setText(user.phone);
@@ -74,18 +81,82 @@ public class Signup3Activity extends AppCompatActivity {
         category.setText(car.category);
         type.setText(car.type);
         color.setText(car.colors);
-
+        mAuth = FirebaseAuth.getInstance();
 
     }
 
     public void gohome(View V) {
-        postUserData();
 
-        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+        postUserData();
+       // sendVerificationEmail();
+        Intent intent = new Intent(getApplicationContext(), SigninActivity.class);
         startActivity(intent);
     }
 
+
     private void postUserData() {
+
+        mAuth
+                .createUserWithEmailAndPassword(user.email, user.password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task)
+                    {
+                        if (task.isSuccessful()) {
+
+
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            user.sendEmailVerification()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                // email sent
+                                                // after email is sent just logout the user and finish this activity
+                                                FirebaseAuth.getInstance().signOut();
+
+                                                finish();
+
+
+
+
+                                            }
+                                            else
+                                            {
+                                                // email not sent, so display message and restart the activity or do whatever you wish to do
+
+                                                //restart this activity
+                                                overridePendingTransition(0, 0);
+                                                finish();
+                                                overridePendingTransition(0, 0);
+                                                startActivity(getIntent());
+
+                                            }
+                                        }
+                                    });
+
+
+
+                            Toast.makeText(getApplicationContext(),
+                                    "Registration successful!",
+                                    Toast.LENGTH_LONG)
+                                    .show();
+                        }
+                        else {
+
+                            // Registration failed
+                            Toast.makeText(
+                                    getApplicationContext(),
+                                    "Registration failed!!"
+                                            + " Please try again later",
+                                    Toast.LENGTH_LONG)
+                                    .show();
+                        }
+                    }
+                });
+
+
         // url to post our data
         String url = "http://192.168.154.207:8000/api/user/insert";
 

@@ -1,5 +1,7 @@
 package com.example.afinal;
 
+import static androidx.camera.core.CameraX.getContext;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,10 +10,12 @@ import androidx.camera.core.ImageCaptureException;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -23,7 +27,9 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.Surface;
@@ -32,6 +38,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.chaquo.python.PyObject;
+import com.chaquo.python.Python;
+import com.chaquo.python.android.AndroidPlatform;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -48,26 +57,50 @@ import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
+import com.googlecode.tesseract.android.TessBaseAPI;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.Arrays;
 import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
-
+    public static final String lang = "eng";
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imageView;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
-
+    InputStream trainDataInputStream;
+    OutputStream trainDataOutputStream;
+    AssetManager assetManager;
+    String externalDataPath;
+    String ImageString="";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        if (!Python.isStarted()) {
+            Python.start(new AndroidPlatform(this));
+        } else {
+            Log.i("nelsaaa", "nelaa");
 
+        }
+
+// 2. Obtain the python instance
+
+//        PyObject sys = py.getModule("scan");
+//        PyObject textOutputStream = sys.callAttr("fibonacci_of",5);
+//        Log.i("outputtttttt",textOutputStream.toString());
 
         this.imageView = (ImageView) this.findViewById(R.id.imageView1);
         Button photoButton = (Button) this.findViewById(R.id.button1);
@@ -82,7 +115,10 @@ public class TestActivity extends AppCompatActivity {
                 }
             }
         });
+
+//        mTessOCR = new tessOCR();
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -103,62 +139,63 @@ public class TestActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
+
+
             imageView.setImageBitmap(photo);
-          //  String result = URLDecoder.decode(imageUrls.get(j), "UTF-8");
-
-            FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(photo);
-               // Or, to provide language hints to assist with language detection:
-// See https://cloud.google.com/vision/docs/languages for supported languages
-               FirebaseVisionCloudTextRecognizerOptions options = new FirebaseVisionCloudTextRecognizerOptions.Builder()
-                    .setLanguageHints(Arrays.asList("en","hi","ar"))
-                    .build();
-            FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance()
-                    .getOnDeviceTextRecognizer();
-            Task<FirebaseVisionText> result =
-                    detector.processImage(image)
-                            .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
-                                @Override
-                                public void onSuccess(FirebaseVisionText firebaseVisionText) {
-                                    // Task completed successfully
-                                    // ...
-
-                                    for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
-                                        Rect boundingBox = block.getBoundingBox();
-                                        Point[] cornerPoints = block.getCornerPoints();
-                                        String text = block.getText();
-                                        Log.i("testx",text);
-                                    }
-                                }
-
-                            })
-                            .addOnFailureListener(
-                                    new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            // Task failed with an exception
-                                            // ...
-                                        }
-                                    });
+            Python py = Python.getInstance();
+            ImageString=getStringImage(photo);
+            Log.i("ImageeeeeeeeeeeStringggggg",ImageString);
 
 
+//             PyObject sys = py.getModule("scan");
+//            //call python method and pass imageString as a parameter
+//            byte[] out = sys.callAttr("main",ImageString).toJava(byte[].class);;
+//            short[] shortData = new short[out.length / 2];
+//            ByteBuffer.wrap(out).order(ByteOrder.nativeOrder()).asShortBuffer().get(shortData);
 
+            //  String result = URLDecoder.decode(imageUrls.get(j), "UTF-8");
 
-
-
-
-
-
-
-
+//            FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(photo);
+//               // Or, to provide language hints to assist with language detection:
+//// See https://cloud.google.com/vision/docs/languages for supported languages
+//               FirebaseVisionCloudTextRecognizerOptions options = new FirebaseVisionCloudTextRecognizerOptions.Builder()
+//                    .setLanguageHints(Arrays.asList("en","hi","ar"))
+//                    .build();
+//            FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance()
+//                    .getOnDeviceTextRecognizer();
+//            Task<FirebaseVisionText> result =
+//                    detector.processImage(image)
+//                            .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+//                                @Override
+//                                public void onSuccess(FirebaseVisionText firebaseVisionText) {
+//                                    // Task completed successfully
+//                                    // ...
+//
+//                                    for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
+//                                        Rect boundingBox = block.getBoundingBox();
+//                                        Point[] cornerPoints = block.getCornerPoints();
+//                                        String text = block.getText();
+//                                        Log.i("testx",text);
+//                                    }
+//                                }
+//
+//                            })
+//                            .addOnFailureListener(
+//                                    new OnFailureListener() {
+//                                        @Override
+//                                        public void onFailure(@NonNull Exception e) {
+//                                            // Task failed with an exception
+//                                            // ...
+//                                        }
+//                                    });
+//
+//
 //
 //
 
 
-
-
-
-
-
+//
+//
 
 
 //            File imageFile = new File("eurotext.tif");
@@ -172,28 +209,6 @@ public class TestActivity extends AppCompatActivity {
 //            } catch (TesseractException e) {
 //                System.err.println(e.getMessage());
 //            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //            InputImage imagee = InputImage.fromBitmap(photo, 90);
@@ -237,7 +252,14 @@ public class TestActivity extends AppCompatActivity {
 //
 
         }
-        }
     }
+    public String getStringImage(Bitmap photo){
+        ByteArrayOutputStream output=new ByteArrayOutputStream();
+        photo.compress(Bitmap.CompressFormat.PNG,100,output);
+        byte [] imageByte=output.toByteArray();
+        String encodeImage=android.util.Base64.encodeToString(imageByte, Base64.DEFAULT);
+        return encodeImage;
+    }
+}
 
 

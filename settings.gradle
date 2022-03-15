@@ -4,8 +4,10 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        maven { url "https://chaquo.com/maven" }
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
 rootProject.name = "final"
 include ':app'
+//include ':libraries:tess-two'

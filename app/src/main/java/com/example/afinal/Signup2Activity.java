@@ -13,6 +13,8 @@ import java.lang.reflect.Array;
 
 public class Signup2Activity extends AppCompatActivity {
     private EditText carnumber;
+
+
     String[] colors = new String[]{"Select color", "RED", "BLACK", "SILVER", "BLUE", "GREEN", "MAROON"};
     String[] items = new String[]{"select category", "BMW", "FIAT", "Kia", "JEEP", "OPEL", "TOYOTA", "MINI", "RENAULT"};
     String[][] cars = {{"select type"},
@@ -31,16 +33,17 @@ public class Signup2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_signup2);
         //car category
         Spinner dropdown = findViewById(R.id.spinner1);
+
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 Log.i("ss", selectedItem);
-
                     selected(position, selectedItem);
 
-            } // to close the onItemSelected
+            }
 
             public void onNothingSelected(AdapterView<?> parent) {
 

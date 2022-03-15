@@ -43,7 +43,8 @@
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+android:layout_gravity="center"
+                android:gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:background="@color/white"
                 android:padding="10dp"
@@ -53,7 +54,7 @@
                 <TableRow>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="350dp"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
@@ -63,39 +64,33 @@
 
                             android:background="@drawable/ic_baseline_assignment_ind_24" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/messageTextInputLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+
+                            android:layout_width="match_parent"
+                            android:id="@+id/name"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="0"
-                            android:padding="10dip"
-                            android:text="Name:"
-                            android:textColor="@color/pink"
-                            android:textSize="20sp" />
+                            android:hint="Enter Text here" />
 
-
+                    </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
-
-                    <EditText
-
-                        android:id="@+id/name"
-                        android:layout_weight="1"
-                        android:background="#00000000"
-                        android:padding="10dip"
-                        android:text="" />
                 </TableRow>
 
-                <View
-                    android:layout_width="10dp"
-                    android:layout_height="3dp"
-                    android:background="@color/dark_blue" />
+
 
                 <TableRow>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="350dp"
                         android:layout_height="wrap_content"
-
                         android:orientation="horizontal">
 
                         <TextView
@@ -104,200 +99,201 @@
 
                             android:background="@drawable/ic_baseline_email_24" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:padding="10dip"
-                            android:text="Email"
-                            android:textColor="@color/pink"
-                            android:textSize="20sp" />
-                    </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/email"
-                        android:background="#00000000"
-                        android:padding="10dip"
-                        android:text="" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/messageTextInput"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+
+                                android:layout_width="match_parent"
+                                android:id="@+id/email"
+                                android:layout_height="wrap_content"
+                                android:hint="Enter Email here" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
                 </TableRow>
 
-                <View
-                    android:layout_width="10dp"
-                    android:layout_height="3dp"
-                    android:background="@color/dark_blue" />
 
                 <TableRow>
-
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="350dp"
                         android:layout_height="wrap_content"
-
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+
                             android:background="@drawable/ic_baseline_phone_24" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:padding="10dip"
-                            android:text="Phone"
-                            android:textColor="@color/pink"
-                            android:textSize="20sp" />
-                    </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/phone"
-                        android:background="#00000000"
-                        android:padding="10dip"
-                        android:text="" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/messageTextInputLaout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+
+                                android:layout_width="match_parent"
+                                android:id="@+id/phone"
+                                android:layout_height="wrap_content"
+                                android:hint="Enter Text here" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
                 </TableRow>
 
-                <View
-                    android:layout_width="10dp"
-                    android:layout_height="3dp"
-                    android:background="@color/dark_blue" />
 
                 <TableRow>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="350dp"
                         android:layout_height="wrap_content"
-
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+
                             android:background="@drawable/ic_baseline_calendar_today_24" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:padding="10dip"
-                            android:text="Date of birth"
-                            android:textColor="@color/pink"
-                            android:textSize="20sp" />
-                    </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/dob"
-                        android:background="#00000000"
-                        android:padding="10dip"
-                        android:text="" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/messagTextInputLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+
+                                android:layout_width="match_parent"
+                                android:id="@+id/dob"
+                                android:layout_height="wrap_content"
+                                android:hint="Enter Text here" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
                 </TableRow>
 
-                <View
-                    android:layout_width="10dp"
-                    android:layout_height="3dp"
-                    android:background="@color/dark_blue" />
+
 
                 <TableRow>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="350dp"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+
                             android:background="@drawable/ic_baseline_boy_24" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:padding="10dip"
-                            android:text="Gender"
-                            android:textColor="@color/pink"
-                            android:textSize="20sp" />
-                    </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/gender"
-                        android:background="#00000000"
-                        android:padding="10dip"
-                        android:text="" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/messageTextInputLayot"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+
+                                android:layout_width="match_parent"
+                                android:id="@+id/gender"
+                                android:layout_height="wrap_content"
+                                android:hint="Enter Text here" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
                 </TableRow>
 
-                <View
-                    android:layout_width="10dp"
-                    android:layout_height="3dp"
-                    android:background="@color/dark_blue" />
+
 
                 <TableRow>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="350dp"
                         android:layout_height="wrap_content"
-
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+
                             android:background="@drawable/ic_baseline_home_24" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:padding="10dip"
-                            android:text="Address"
-                            android:textColor="@color/pink"
-                            android:textSize="20sp" />
-                    </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/address"
-                        android:background="#00000000"
-                        android:padding="10dip"
-                        android:text="" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/messageTexInputLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+
+                                android:layout_width="match_parent"
+                                android:id="@+id/address"
+                                android:layout_height="wrap_content"
+                                android:hint="Enter Text here" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
                 </TableRow>
 
-                <View
-                    android:layout_width="10dp"
-                    android:layout_height="3dp"
-                    android:background="@color/dark_blue" />
 
                 <TableRow>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="350dp"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+
                             android:background="@drawable/ic_baseline_nid_card_24" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:padding="10dip"
-                            android:text="National ID"
-                            android:textColor="@color/pink"
-                            android:textSize="20sp" />
-                    </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/nid"
-                        android:background="#00000000"
-                        android:padding="10dip"
-                        android:text="" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/messageTextIputLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+
+                                android:layout_width="match_parent"
+                                android:id="@+id/nid"
+                                android:layout_height="wrap_content"
+                                android:hint="Enter Text here" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
                 </TableRow>
 
-                <View
-                    android:layout_width="10dp"
-                    android:layout_height="3dp"
-                    android:background="@color/dark_blue" />
+<!--                <View-->
+<!--                    android:layout_width="10dp"-->
+<!--                    android:layout_height="3dp"-->
+<!--                    android:background="@color/dark_blue" />-->
             </TableLayout>
 
             <LinearLayout
@@ -309,7 +305,7 @@
 
                 <TextView
                     android:id="@+id/update"
-                    android:layout_width="200dp"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="25dp"

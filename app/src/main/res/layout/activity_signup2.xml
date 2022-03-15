@@ -110,44 +110,93 @@
                 android:textColor="@color/dark_blue"
                 android:textSize="20dp" />
 
+            <LinearLayout
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <Spinner
-                android:popupBackground="@android:color/white"
-                android:popupElevation="3dp"
-                android:stateListAnimator="@drawable/spinner"
-                android:dropDownWidth="300dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:id="@+id/spinner1"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dropdown"/>
+                <Spinner
+                    android:paddingLeft="50dp"
+                    android:id="@+id/spinner1"
+                    android:layout_width="250dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/dropdown"
+                    android:dropDownWidth="300dp"
+                    android:popupBackground="@android:color/white"
+                    android:popupElevation="3dp"
+                    android:spinnerMode="dropdown"
+                    android:textAlignment="center"
+                    android:stateListAnimator="@drawable/spinner" />
 
-            <Spinner
-                android:popupBackground="@android:color/white"
-                android:popupElevation="3dp"
-                android:stateListAnimator="@drawable/spinner"
-                android:dropDownWidth="300dp"
-                android:id="@+id/spinner2"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:layout_width="200dp"
+                <TextView
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-50dp"
+                    android:background="@drawable/ic_baseline_arrow_drop_down_24" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:textAlignment="center"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dropdown"/>
-            <Spinner
-                android:popupBackground="@android:color/white"
-                android:popupElevation="3dp"
-                android:stateListAnimator="@drawable/spinner"
-                android:dropDownWidth="300dp"
-                android:id="@+id/spinner3"
-                android:layout_marginTop="20dp"
                 android:layout_gravity="center"
-                android:layout_width="200dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:paddingLeft="50dp"
+                    android:id="@+id/spinner2"
+                    android:layout_width="250dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/dropdown"
+                    android:dropDownWidth="300dp"
+                    android:popupBackground="@android:color/white"
+                    android:popupElevation="3dp"
+                    android:spinnerMode="dropdown"
+                    android:textAlignment="center"
+                    android:stateListAnimator="@drawable/spinner" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-50dp"
+                    android:background="@drawable/ic_baseline_arrow_drop_down_24" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dropdown"/>
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:paddingLeft="50dp"
+                    android:id="@+id/spinner3"
+                    android:layout_width="250dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/dropdown"
+                    android:dropDownWidth="300dp"
+                    android:popupBackground="@android:color/white"
+                    android:popupElevation="3dp"
+                    android:spinnerMode="dropdown"
+                    android:textAlignment="center"
+                    android:stateListAnimator="@drawable/spinner" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-50dp"
+                    android:background="@drawable/ic_baseline_arrow_drop_down_24" />
+            </LinearLayout>
 
 
 
@@ -160,7 +209,7 @@
                 android:background="@drawable/roundborder"
                 android:backgroundTint="@color/pink"
                 android:clickable="true"
-android:onClick="next"
+                android:onClick="next"
                 android:paddingTop="10dp"
                 android:text="Next"
                 android:textAlignment="center"

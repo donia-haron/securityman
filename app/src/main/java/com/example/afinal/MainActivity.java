@@ -24,9 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private HTextView hTextView;
 
     //ocr
-    //    frogetpassword
-    //    emailverification
-    //   prediction
+    //prediction
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +50,11 @@ public class MainActivity extends AppCompatActivity {
                 String id = sh.getString("id", "");
                 Log.i("iddd", id);
                 if (id != "") {
-                    Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                    Intent i = new Intent(getApplicationContext(), TestActivity.class);
                     startActivity(i);
+
                 } else {
-                    Intent i = new Intent(getApplicationContext(), SigninActivity.class);
+                    Intent i = new Intent(getApplicationContext(), TestActivity.class);
                     startActivity(i);
                 }
             }
