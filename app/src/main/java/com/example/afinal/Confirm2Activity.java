@@ -47,8 +47,8 @@ import androidmads.library.qrgenearator.QRGEncoder;
 
 public class Confirm2Activity extends AppCompatActivity {
     private ImageView qrCodeIV;
-    String URL = "http://192.168.154.207:8000/api/registration/user/";
-    String URL1 = "http://192.168.154.207:8000/api/registration/";
+    String URL = R.string.url+"/registration/user/";
+    String URL1 = R.string.url+"/registration/";
     int parkingid, checkin, checkout, checkinm, checkoutm;
     String dateday, day, slott, iduser, regid, checkintt;
     String dataqr, carnumber;
@@ -194,7 +194,7 @@ public class Confirm2Activity extends AppCompatActivity {
 
     private void postUserData() {
         // url to post our data
-        String url = "http://192.168.154.207:8000/api/registration/insert";
+        String url = R.string.url+"/registration/insert";
 
         RequestQueue queue = Volley.newRequestQueue(Confirm2Activity.this);
 
@@ -252,7 +252,7 @@ public class Confirm2Activity extends AppCompatActivity {
 
     private void postregData() {
         // url to post our data
-        String url = "http://192.168.154.207:8000/api/registration/update/";
+        String url = R.string.url+"/registration/update/";
 
         RequestQueue queue = Volley.newRequestQueue(Confirm2Activity.this);
         Log.i("Sloottt", slott);
@@ -300,7 +300,7 @@ public class Confirm2Activity extends AppCompatActivity {
 
     private void postslotData(String status) {
         // url to post our data
-        String url = "http://192.168.154.207:8000/api/parkingslot/updatestatus/";
+        String url = R.string.url+"/parkingslot/updatestatus/";
 
         RequestQueue queue = Volley.newRequestQueue(Confirm2Activity.this);
         Log.i("Sloottt", slott);

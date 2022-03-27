@@ -9,25 +9,34 @@ android {
 
     defaultConfig {
         applicationId "com.example.afinal"
-        minSdk 31
-        targetSdk 31
+
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        ndk {
-            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
-        }
-
         sourceSets {
             main {
-                python.srcDir "src/main/python"
+                python {
+                    srcDirs = ["src/main/python"]
+                }
             }
         }
-
         python {
-            buildPython "C:/Python38/python.exe"
+            pip {
+
+                install "ArabicOcr== 1.1.6"
+             
+                install "opencv-python"
+
+                install "Importio== 2.0.2"
+
+              }
         }
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+        minSdk 31
+        targetSdk 31
     }
 
 

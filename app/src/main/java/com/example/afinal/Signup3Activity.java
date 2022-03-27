@@ -158,7 +158,7 @@ public class Signup3Activity extends AppCompatActivity {
 
 
         // url to post our data
-        String url = "http://192.168.154.207:8000/api/user/insert";
+        String url = R.string.url+"/user/insert";
 
         RequestQueue queue = Volley.newRequestQueue(Signup3Activity.this);
 
@@ -211,8 +211,7 @@ public class Signup3Activity extends AppCompatActivity {
 
     private void postCarData() {
         // url to post our data
-        String url = "http://192.168.15" +
-                "4.207:8000/api/car/insert";
+        String url = R.string.url+"/car/insert";
 
         RequestQueue queue = Volley.newRequestQueue(Signup3Activity.this);
 

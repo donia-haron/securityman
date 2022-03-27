@@ -43,7 +43,7 @@ import java.util.ArrayList;
 
 public class BookingActivity extends AppCompatActivity {
     final ArrayList<String> n = new ArrayList<>();
-    String URL = "http://192.168.154.207:8000/api/parkingslot/parking/";
+    String URL = R.string.url+"/parkingslot/parking/";
     int id, checkin, checkout, checkinm, checkoutm;
     String dateday, day;
     LottieAnimationView animation;
@@ -81,7 +81,7 @@ public class BookingActivity extends AppCompatActivity {
     public void parseApiDataa() {
         String iduser;
 
-        String URL = "http://192.168.154.207:8000/api/registration/user/";
+        String URL = R.string.url+"/registration/user/";
         SharedPreferences sh = this.getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
 
         iduser = sh.getString("id", "");
@@ -156,7 +156,7 @@ public class BookingActivity extends AppCompatActivity {
 
     public void parseApiDataslotlevel() {
         final ArrayList<String> category = new ArrayList<>();
-        String URL = "http://192.168.154.207:8000/api/parkingslot/level/";
+        String URL = R.string.url+"/parkingslot/level/";
         StringRequest s = new StringRequest(Request.Method.GET, URL + id, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -222,7 +222,7 @@ public class BookingActivity extends AppCompatActivity {
     public void parseApileveldata(String level) {
 
 final ArrayList<String> levels = new ArrayList<>();
-        String URL = "http://192.168.154.207:8000/api/parkingslot/parking/level/";
+        String URL = R.string.url+"/parkingslot/parking/level/";
         StringRequest s = new StringRequest(Request.Method.GET, URL + id + "/" + level, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -353,7 +353,7 @@ final ArrayList<String> levels = new ArrayList<>();
 
 
     public void parseApiDataparking() {
-        String URL = "http://192.168.154.207:8000/api/parkingspace/";
+        String URL = R.string.url+"/parkingspace/";
         StringRequest s = new StringRequest(Request.Method.GET, URL + id, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

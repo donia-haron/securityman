@@ -50,9 +50,9 @@ import java.util.Map;
 public class HomeActivity extends AppCompatActivity {
 
     final ArrayList<parkingspace> n = new ArrayList<>();
-    String URL = "http://192.168.154.207:8000/api/parkingspace";
-    String URL1 = "http://192.168.154.207:8000/api/parkingspace/category/";
-    String URL2 = "http://192.168.154.207:8000/api/registration/";
+    String URL = R.string.url+"/parkingspace";
+    String URL1 = R.string.url+"/parkingspace/category/";
+    String URL2 = R.string.url+"/registration/";
     GridView listView;
     TextView textView;
     ImageView sidebar;
@@ -291,7 +291,7 @@ if (flag==0){
 
     private void postregData(String regid, String status) {
         // url to post our data
-        String url = "http://192.168.154.207:8000/api/registration/updatestatus/";
+        String url = R.string.url+"/registration/updatestatus/";
 
         RequestQueue queue = Volley.newRequestQueue(HomeActivity.this);
 
@@ -331,7 +331,7 @@ if (flag==0){
 
     private void postslotData(String status, String slott, String parking_id) {
         // url to post our data
-        String url = "http://192.168.154.207:8000/api/parkingslot/updatestatus/";
+        String url = R.string.url+"/parkingslot/updatestatus/";
 
         RequestQueue queue = Volley.newRequestQueue(HomeActivity.this);
         Log.i("Sloottt", slott);

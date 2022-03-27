@@ -30,8 +30,8 @@ public class ConfirmActivity extends AppCompatActivity {
     TextView date;
     TextView position;
 
-    String URL1 = "http://192.168.154.207:8000/api/parkingspace/";
-    String URL = "http://192.168.154.207:8000/api/user/car/";
+    String URL1 = R.string.url+"/parkingspace/";
+    String URL = R.string.url+"/user/car/";
     int parkingid, checkin, checkout, checkinm, checkoutm;
     String dateday, day,slott;
     @Override

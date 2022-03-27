@@ -20,5 +20,5 @@ time before count down ends</u></string>
     <string name="hello">Hello World, DatumDroidOCRActivity!</string>
     <string name="button_text">OCR!</string>
     <string name="text_hint">OCRed Text will appear here</string>
-
+<string name="url">http://192.168.137.207:8000/api</string>
 </resources>

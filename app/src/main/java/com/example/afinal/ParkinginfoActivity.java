@@ -24,7 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ParkinginfoActivity extends AppCompatActivity {
-    String URL = "http://192.168.154.207:8000/api/parkingspace/";
+    String URL = R.string.url+"/parkingspace/";
     TextView name;
     TextView location;
     TextView capacity;

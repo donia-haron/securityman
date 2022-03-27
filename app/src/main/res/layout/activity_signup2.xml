@@ -98,39 +98,78 @@
             android:background="@drawable/defaultround"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/carnum"
-                android:layout_width="300dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="80dp"
-                android:background="@drawable/roundborder"
-                android:hint="Car Number"
-                android:textAlignment="center"
-                android:textColor="@color/dark_blue"
-                android:textSize="20dp" />
+            <ProgressBar
+                android:layout_marginTop="50dp"
+                android:id="@+id/prg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal"
+                android:layout_centerHorizontal="true"/>
 
             <LinearLayout
-                android:textAlignment="center"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:id="@+id/ocr"
+                android:visibility="gone"
+                android:layout_marginTop="80dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+
+                <EditText
+                    android:id="@+id/carnum"
+                    android:layout_width="250dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/roundborder"
+                    android:text="Car Number"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="20dp" />
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="200dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ww" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_marginTop="80dp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/button1"
+                android:textSize="22sp"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="scan car plate" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:textAlignment="center">
 
                 <Spinner
-                    android:paddingLeft="50dp"
                     android:id="@+id/spinner1"
                     android:layout_width="250dp"
                     android:layout_height="60dp"
                     android:background="@drawable/dropdown"
                     android:dropDownWidth="300dp"
+                    android:paddingLeft="50dp"
                     android:popupBackground="@android:color/white"
                     android:popupElevation="3dp"
                     android:spinnerMode="dropdown"
-                    android:textAlignment="center"
-                    android:stateListAnimator="@drawable/spinner" />
+                    android:stateListAnimator="@drawable/spinner"
+                    android:textAlignment="center" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -141,26 +180,26 @@
             </LinearLayout>
 
             <LinearLayout
-                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:textAlignment="center">
 
                 <Spinner
-                    android:paddingLeft="50dp"
                     android:id="@+id/spinner2"
                     android:layout_width="250dp"
                     android:layout_height="60dp"
                     android:background="@drawable/dropdown"
                     android:dropDownWidth="300dp"
+                    android:paddingLeft="50dp"
                     android:popupBackground="@android:color/white"
                     android:popupElevation="3dp"
                     android:spinnerMode="dropdown"
-                    android:textAlignment="center"
-                    android:stateListAnimator="@drawable/spinner" />
+                    android:stateListAnimator="@drawable/spinner"
+                    android:textAlignment="center" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -169,6 +208,7 @@
                     android:layout_marginLeft="-50dp"
                     android:background="@drawable/ic_baseline_arrow_drop_down_24" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -178,17 +218,17 @@
                 android:orientation="horizontal">
 
                 <Spinner
-                    android:paddingLeft="50dp"
                     android:id="@+id/spinner3"
                     android:layout_width="250dp"
                     android:layout_height="60dp"
                     android:background="@drawable/dropdown"
                     android:dropDownWidth="300dp"
+                    android:paddingLeft="50dp"
                     android:popupBackground="@android:color/white"
                     android:popupElevation="3dp"
                     android:spinnerMode="dropdown"
-                    android:textAlignment="center"
-                    android:stateListAnimator="@drawable/spinner" />
+                    android:stateListAnimator="@drawable/spinner"
+                    android:textAlignment="center" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -197,7 +237,6 @@
                     android:layout_marginLeft="-50dp"
                     android:background="@drawable/ic_baseline_arrow_drop_down_24" />
             </LinearLayout>
-
 
 
             <TextView

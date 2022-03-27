@@ -51,8 +51,8 @@ public class PersonalFragment extends Fragment {
     private String mParam2;
     LinearLayout total;
     LottieAnimationView animation;
-    String URL = "http://192.168.154.207:8000/api/user/";
-    String URL1 = "http://192.168.154.207:8000/api/usercar/";
+    String URL = R.string.url+"/user/";
+    String URL1 = R.string.url+"/usercar/";
     EditText name;
     EditText email;
     EditText phone;
@@ -161,7 +161,7 @@ update=(TextView) rootView.findViewById(R.id.update);
 
 public void updatee(){
 
-    String url = "http://192.168.154.207:8000/api/user/update/";
+    String url = R.string.url+"/user/update/";
     SharedPreferences sh = this.getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
     String id = sh.getString("id", "");
     Log.i("iddd", id);

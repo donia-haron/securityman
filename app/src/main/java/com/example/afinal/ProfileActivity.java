@@ -36,8 +36,8 @@ import java.util.Date;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    String URL = "http://192.168.154.207:8000/api/user/";
-    String URL1 = "http://192.168.154.207:8000/api/usercar/";
+    String URL = R.string.url+"/user/";
+    String URL1 = R.string.url+"/usercar/";
     EditText name;
     EditText email;
     EditText phone;

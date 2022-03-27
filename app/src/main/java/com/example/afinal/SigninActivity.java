@@ -34,7 +34,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SigninActivity extends AppCompatActivity {
-    String URL = "http://192.168.154.207:8000/api/useremail/";
+    String URL = R.string.url+"/useremail/";
     EditText email;
     EditText password;
     private FirebaseAuth mAuth;

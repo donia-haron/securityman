@@ -90,7 +90,7 @@ public class RegistrationFragment extends Fragment {
 
     public void parseApiData() {
         String iduser;
-        String URL = "http://192.168.154.207:8000/api/registration/user/";
+        String URL = R.string.url+"/registration/user/";
         SharedPreferences sh = this.getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
 
 
@@ -148,7 +148,7 @@ public class RegistrationFragment extends Fragment {
                             Log.i("slot", slotname);
                             checkoutdatee = String.valueOf(checkouttime) + ":" + minout + " " + type;
 
-                            String URL1 = "http://192.168.154.207:8000/api/parkingspace/";
+                            String URL1 = R.string.url+"/parkingspace/";
                             ////////////////////////////////////////////////////
                             String finalSlotname = slotname;
                             String finalStatus = status;

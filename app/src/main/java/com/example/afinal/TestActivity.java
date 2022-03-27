@@ -74,15 +74,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
-    public static final String lang = "eng";
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imageView;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
-    TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
-    InputStream trainDataInputStream;
-    OutputStream trainDataOutputStream;
-    AssetManager assetManager;
-    String externalDataPath;
     String ImageString="";
 
     @Override
@@ -96,11 +90,6 @@ public class TestActivity extends AppCompatActivity {
 
         }
 
-// 2. Obtain the python instance
-
-//        PyObject sys = py.getModule("scan");
-//        PyObject textOutputStream = sys.callAttr("fibonacci_of",5);
-//        Log.i("outputtttttt",textOutputStream.toString());
 
         this.imageView = (ImageView) this.findViewById(R.id.imageView1);
         Button photoButton = (Button) this.findViewById(R.id.button1);
@@ -116,7 +105,6 @@ public class TestActivity extends AppCompatActivity {
             }
         });
 
-//        mTessOCR = new tessOCR();
     }
 
 
@@ -142,123 +130,26 @@ public class TestActivity extends AppCompatActivity {
 
 
             imageView.setImageBitmap(photo);
+           ImageString= getStringImage(photo);
+
+            // 2. Obtain the python instance
             Python py = Python.getInstance();
-            ImageString=getStringImage(photo);
-            Log.i("ImageeeeeeeeeeeStringggggg",ImageString);
+            PyObject sys = py.getModule("scan");
 
+        PyObject res =sys.callAttr("main",ImageString);
+         Log.i("outputtttttttttttttttt", String.valueOf(res));
 
-//             PyObject sys = py.getModule("scan");
-//            //call python method and pass imageString as a parameter
-//            byte[] out = sys.callAttr("main",ImageString).toJava(byte[].class);;
-//            short[] shortData = new short[out.length / 2];
-//            ByteBuffer.wrap(out).order(ByteOrder.nativeOrder()).asShortBuffer().get(shortData);
-
-            //  String result = URLDecoder.decode(imageUrls.get(j), "UTF-8");
-
-//            FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(photo);
-//               // Or, to provide language hints to assist with language detection:
-//// See https://cloud.google.com/vision/docs/languages for supported languages
-//               FirebaseVisionCloudTextRecognizerOptions options = new FirebaseVisionCloudTextRecognizerOptions.Builder()
-//                    .setLanguageHints(Arrays.asList("en","hi","ar"))
-//                    .build();
-//            FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance()
-//                    .getOnDeviceTextRecognizer();
-//            Task<FirebaseVisionText> result =
-//                    detector.processImage(image)
-//                            .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
-//                                @Override
-//                                public void onSuccess(FirebaseVisionText firebaseVisionText) {
-//                                    // Task completed successfully
-//                                    // ...
-//
-//                                    for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
-//                                        Rect boundingBox = block.getBoundingBox();
-//                                        Point[] cornerPoints = block.getCornerPoints();
-//                                        String text = block.getText();
-//                                        Log.i("testx",text);
-//                                    }
-//                                }
-//
-//                            })
-//                            .addOnFailureListener(
-//                                    new OnFailureListener() {
-//                                        @Override
-//                                        public void onFailure(@NonNull Exception e) {
-//                                            // Task failed with an exception
-//                                            // ...
-//                                        }
-//                                    });
-//
-//
-//
-//
-
-
-//
-//
-
-
-//            File imageFile = new File("eurotext.tif");
-//            ITesseract instance = new Tesseract();  // JNA Interface Mapping
-//            // ITesseract instance = new Tesseract1(); // JNA Direct Mapping
-//            instance.setDatapath("tessdata"); // path to tessdata directory
-//
-//            try {
-//                String result = instance.doOCR(imageFile);
-//                System.out.println(result);
-//            } catch (TesseractException e) {
-//                System.err.println(e.getMessage());
-//            }
-
-
-//            InputImage imagee = InputImage.fromBitmap(photo, 90);
-//            // [START run_detector]
-//            Task<Text> result =
-//                    recognizer.process(imagee)
-//                            .addOnSuccessListener(new OnSuccessListener<Text>() {
-//                                @Override
-//                                public void onSuccess(Text visionText) {
-//
-//                                    for (Text.TextBlock block : visionText.getTextBlocks()) {
-//                                        Rect boundingBox = block.getBoundingBox();
-//                                        Point[] cornerPoints = block.getCornerPoints();
-//                                        String text = block.getText();
-//
-//                                        Log.i("text",text);
-//                                        //
-//                                        for (Text.Line line: block.getLines()) {
-//                                            // ...
-//                                            for (Text.Element element: line.getElements()) {
-//
-//                                         Log.i("inn",element.toString());
-//
-//                                                // ...
-//                                            }
-//                                        }
-//                                    }
-//                                    // [END get_text]
-//                                    // [END_EXCLUDE]
-//                                }
-//                            })
-//                            .addOnFailureListener(
-//                                    new OnFailureListener() {
-//                                        @Override
-//                                        public void onFailure(@NonNull Exception e) {
-//                                            // Task failed with an exception
-//                                            // ...
-//                                        }
-//                                    });
-//            // [END run_detector]
-//
 
         }
     }
     public String getStringImage(Bitmap photo){
+        Log.i("imag string","awl elfun ");
         ByteArrayOutputStream output=new ByteArrayOutputStream();
         photo.compress(Bitmap.CompressFormat.PNG,100,output);
+        Log.i("imag string","nos elfun ");
         byte [] imageByte=output.toByteArray();
         String encodeImage=android.util.Base64.encodeToString(imageByte, Base64.DEFAULT);
-        return encodeImage;
+       return encodeImage;
     }
 }
 

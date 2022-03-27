@@ -49,7 +49,7 @@ public class CarFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    String URL1 = "http://192.168.154.207:8000/api/usercar/";
+    String URL1 = R.string.url+"/usercar/";
 TextView update;
     String type1, category1, carnum1, color1;
     EditText carnum;
@@ -168,7 +168,7 @@ update=(TextView) rootView.findViewById(R.id.update);
 
     public void updatee() {
 
-        String url = "http://192.168.154.207:8000/api/car/update/";
+        String url = R.string.url+"/car/update/";
 
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
