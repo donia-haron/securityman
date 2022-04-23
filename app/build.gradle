@@ -63,8 +63,8 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-ml-natural-language:22.0.0'
     implementation 'com.google.firebase:firebase-ml-natural-language-language-id-model:20.0.7'
-
-
+    implementation 'me.dm7.barcodescanner:zbar:1.8.4'
+    implementation 'me.dm7.barcodescanner:zxing:1.9'
     // Declare the dependency for the Firebase SDK for Google Analytics
     implementation 'com.google.firebase:firebase-analytics'
 
