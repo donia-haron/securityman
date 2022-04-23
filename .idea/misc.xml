@@ -50,7 +50,7 @@
         <entry key="..\:/Users/Dell-/StudioProjects/final/app/src/main/res/layout/activity_confirm2.xml" value="0.264" />
         <entry key="..\:/Users/Dell-/StudioProjects/final/app/src/main/res/layout/activity_forget.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/Dell-/StudioProjects/final/app/src/main/res/layout/activity_home.xml" value="0.1488095238095238" />
-        <entry key="..\:/Users/Dell-/StudioProjects/final/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/Dell-/StudioProjects/final/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Dell-/StudioProjects/final/app/src/main/res/layout/activity_parkinginfo.xml" value="0.17543859649122806" />
         <entry key="..\:/Users/Dell-/StudioProjects/final/app/src/main/res/layout/activity_prediction.xml" value="0.23572744014732966" />
         <entry key="..\:/Users/Dell-/StudioProjects/final/app/src/main/res/layout/activity_profile.xml" value="0.4" />
@@ -77,6 +77,16 @@
         <entry key="..\:/Users/Dell-/StudioProjects/final/app/src/main/res/menu/sidebar.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Dell-/StudioProjects/final/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/Dell-/StudioProjects/final/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.14635416666666667" />
+        <entry key="..\:/android/security/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.20833333333333334" />
+        <entry key="..\:/android/security/app/src/main/res/layout/activity_checkin.xml" value="0.109375" />
+        <entry key="..\:/android/security/app/src/main/res/layout/activity_home.xml" value="0.2" />
+        <entry key="..\:/android/security/app/src/main/res/layout/activity_main.xml" value="0.22916666666666666" />
+        <entry key="..\:/android/security/app/src/main/res/layout/activity_profile.xml" value="0.14204545454545456" />
+        <entry key="..\:/android/security/app/src/main/res/layout/activity_registrations.xml" value="0.109375" />
+        <entry key="..\:/android/security/app/src/main/res/layout/activity_scan.xml" value="0.11354166666666667" />
+        <entry key="..\:/android/security/app/src/main/res/layout/activity_signin.xml" value="0.1921875" />
+        <entry key="..\:/android/security/app/src/main/res/layout/activity_unreg.xml" value="0.14010416666666667" />
+        <entry key="..\:/android/security/app/src/main/res/layout/activity_unreg2.xml" value="0.14010416666666667" />
       </map>
     </option>
   </component>

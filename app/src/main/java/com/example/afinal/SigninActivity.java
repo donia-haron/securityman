@@ -3,7 +3,6 @@ package com.example.afinal;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,11 +10,8 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -34,7 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SigninActivity extends AppCompatActivity {
-    String URL = R.string.url+"/useremail/";
+    String URL = "http://192.168.220.207:8000/api/useremail/";
     EditText email;
     EditText password;
     private FirebaseAuth mAuth;
@@ -68,16 +64,6 @@ public class SigninActivity extends AppCompatActivity {
 
     }
 
-    public void signup(View v) {
-        Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
-        startActivity(i);
-    }
-
-    public void forget(View v) {
-        Intent i = new Intent(getApplicationContext(), ForgetActivity.class);
-        startActivity(i);
-    }
-
     public void home(View v) {
         parseApiData();
 
@@ -105,21 +91,9 @@ public class SigninActivity extends AppCompatActivity {
                                             "Login failed!!",
                                             Toast.LENGTH_LONG)
                                             .show();
-
-
                                 }
                             }
                         });
-
-
-
-
-
-
-
-
-
-
         StringRequest s = new StringRequest(Request.Method.GET, URL + email.getText(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -131,13 +105,14 @@ public class SigninActivity extends AppCompatActivity {
                         for (int i = 0; i < x.length(); i++) {
                             JSONObject user = x.getJSONObject(i);
 
-                                SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
-                                SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                                myEdit.putString("id",user.getString("id"));
-                                myEdit.commit();
-                                Intent z = new Intent(getApplicationContext(), HomeActivity.class);
-                                startActivity(z);
-                            }
+                            SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+                            SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                            myEdit.putString("sid",user.getString("id"));
+                            Log.i("iddddddddddd",user.getString("id"));
+                            myEdit.commit();
+                            Intent z = new Intent(getApplicationContext(), HomeActivity.class);
+                            startActivity(z);
+                        }
 
                     }
                 } catch (JSONException e) {
